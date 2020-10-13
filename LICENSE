@@ -15,4 +15,7 @@ About Imperavi Redactor
 
 Redactor that is located at "redactor/static/redactor/*" directory is not an open-source product but a proprietary commercial copyrighted software.
 
-Mess Marketing (thisismess.com | @etchalon) as a sponsor and contributor of the project bought OEM license for it, so you are free to use it if (AND ONLY) you are using django-wysiwyg-redactor.
+I, douglasmirandasilva@gmail.com, have a licence
+(https://imperavi.com/redactor/license/) that allows me to offer this proprietary
+software (Redactor II) as part of my Django package. So you don't have to buy
+the Redactor Licence, as long as you're using the Redactor II on django-wysiwyg-redactor.

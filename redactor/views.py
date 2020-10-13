@@ -39,24 +39,23 @@ class RedactorUploadView(FormView):
     def dispatch(self, request, *args, **kwargs):
         if not is_module_image_installed():
             data = {
-                'error': _("ImproperlyConfigured: Neither Pillow nor PIL could be imported: No module named 'Image'"),
+                'error': True,
+                'message': _("ImproperlyConfigured: Neither Pillow nor PIL could be imported: No module named 'Image'")
             }
-            return HttpResponse(json.dumps(data),
+            return HttpResponse(json.dumps(data), status=400,
                                 content_type='application/json')
-
-        return super(RedactorUploadView, self).dispatch(request, *args,
-                                                        **kwargs)
+        return super(RedactorUploadView, self).dispatch(request,
+                                                        *args, **kwargs)
 
     def form_invalid(self, form):
         # TODO: Needs better error messages
         try:
-            error = form.errors.values()[-1][-1]
+            message = form.errors.values()[-1][-1]
         except:
-            error = _('Invalid file.')
-        data = {
-            'error': error,
-        }
-        return HttpResponse(json.dumps(data), content_type='application/json')
+            message = _('Invalid file.')
+        data = {'error': True, 'message': message}
+        return HttpResponse(json.dumps(data), status=400,
+                            content_type='application/json')
 
     def form_valid(self, form):
         file_ = form.cleaned_data['file']
@@ -66,8 +65,6 @@ class RedactorUploadView(FormView):
         uploader.save_file()
         file_name = force_str(uploader.get_filename())
         file_url = force_str(uploader.get_url())
-        data = {
-            'filelink': file_url,
-            'filename': file_name,
-        }
+        file_name_key = 'id' if self.form_class is ImageForm else 'name'
+        data = {'url': file_url, file_name_key: file_name}
         return HttpResponse(json.dumps(data), content_type='application/json')

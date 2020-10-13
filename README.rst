@@ -1,10 +1,6 @@
 A lightweight wysiwyg editor for Django
 =======================================
 
-.. image:: https://img.shields.io/pypi/dm/django-wysiwyg-redactor.svg
-    :target: https://pypi.python.org/pypi/django-wysiwyg-redactor/
-    :alt: Downloads
-
 Screenshot
 ----------
 
@@ -13,9 +9,7 @@ Screenshot
 What's that
 -----------------
 
-*django-wysiwyg-redactor* is a text editor application for Django, using `Redactor WYSIWYG editor <http://redactorjs.com/>`_
-
-Sponsored by `Mess Marketing <http://www.thisismess.com>`_, we use the latest version of redactorjs, always up-to-date.
+*django-wysiwyg-redactor* is a text editor application for Django, using `Redactor WYSIWYG editor <https://imperavi.com/redactor/>`_
 
 Dependency
 ----------
@@ -33,11 +27,11 @@ Getting started
 
 .. code-block:: python
 
-    INSTALLED_APPS = (  
-        # ...  
-        'redactor',  
-        # ...  
-    ) 
+    INSTALLED_APPS = (
+        # ...
+        'redactor',
+        # ...
+    )
 
 - Add `url(r'^redactor/', include('redactor.urls'))`, to urls.py
 
@@ -71,13 +65,13 @@ Using in model
         title = models.CharField(max_length=250, verbose_name=u'Title')
         short_text = RedactorField(verbose_name=u'Text')
 
-or use custom parametrs:
+or use custom parameters:
 
 .. code-block:: python
 
     short_text = RedactorField(
         verbose_name=u'Text',
-        redactor_options={'lang': 'en', 'focus': 'true'},
+        redactor_options={'lang': 'en', 'focus': True},
         upload_to='tmp/',
         allow_file_upload=True,
         allow_image_upload=True
@@ -165,7 +159,7 @@ File Storages
 -------------
 *django-wysiwyg-redactor* defaults to using the default media storage for your Django application.
 
-This can be overriden to use a different storage backend with this settings.py variable:
+This can be overridden to use a different storage backend with this settings.py variable:
 
 .. code-block::
 
@@ -198,9 +192,6 @@ Made by robots, or what?
 ------------------------
 Awesome people, you should see the `AUTHORS <https://github.com/douglasmiranda/django-wysiwyg-redactor/blob/master/AUTHORS>`_ file.
 
-And our awesome sponsor:
-
-Mess Marketing from Chicago, IL
-jshedd@thisismess.com
-thisismess.com
-@etchalon
+About the licensing
+-------------------
+You may want to see the `LICENSE <https://github.com/douglasmiranda/django-wysiwyg-redactor/blob/master/LICENSE>`_ file.
