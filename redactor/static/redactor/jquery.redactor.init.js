@@ -2,23 +2,30 @@ if (typeof jQuery === 'undefined' && django && django.jQuery) {
     jQuery = django.jQuery;
 }
 
-if (typeof redactor_custom_options === 'undefined') {
-    redactor_custom_options = {}
+if (typeof custom_options === 'undefined') {
+    custom_options = {}
 }
 
 (function($) {
     $(document).ready(function() {
         $(document).on('redactor:init', 'textarea.redactor-box', function() {
-            var redactor_options = $.extend({}, $(this).data('redactor-options'),
-                                            redactor_custom_options);
-            if (typeof redactor_options.imageUploadErrorCallback === 'undefined') {
-                redactor_options.imageUploadErrorCallback = function (json) {
-                    alert(json.error);
+            var options = $.extend({}, $(this).data('redactor-options'), custom_options);
+            if (typeof options.callbacks === 'undefined') {
+                options.callbacks = {};
+            }
+            if (typeof options.callbacks.imageUploadError === 'undefined') {
+                options.callbacks.imageUploadError = function (json, xhr) {
+                    if (json.error) {
+                        if (json.message) {
+                            alert(json.message);
+                        } else {
+                            alert('Something went wrong!');
+                        }
+                    }
                 }
             }
-            $(this).redactor(redactor_options);
+            $(this).redactor(options);
         });
-        $(document).trigger('redactorWidgetReady');
 
         $('textarea.redactor-box:not([id*="__prefix__"])').each(function() {
             $(this).trigger('redactor:init');
@@ -30,10 +37,14 @@ if (typeof redactor_custom_options === 'undefined') {
         // Credit to the approach taken in django-selectable:
         // https://github.com/mlavin/django-selectable
         $(document).on('click', '.add-row', function () {
-            $(this).parents('.inline-related')
-                   .find('tr.form-row:not(.empty-form)').last()
-                   .find('textarea.redactor-box')
-                   .trigger('redactor:init');
+            var add_row = $(this);
+            var row = add_row.parents('.inline-related')
+                      .find('tr.form-row:not(.empty-form)').last();
+            if (row.length === 0) {
+                row = add_row.parents('.inline-group')
+                      .find('.last-related:not(.empty-form)').last();
+            }
+            row.find('textarea.redactor-box').trigger('redactor:init');
         });
     });
 })(jQuery);

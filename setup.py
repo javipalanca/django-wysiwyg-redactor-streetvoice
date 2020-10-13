@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='django-wysiwyg-redactor',
-    version='0.4.9',
+    version='0.5.1.2',
     description='django-wysiwyg-redactor is a lightweight responsive wysiwyg editor for Django',
     long_description=readme,
     author="Douglas Miranda",
@@ -26,6 +26,7 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 3',        
     ],
     keywords='django,admin,wysiwyg,editor,redactor,redactorjs',
 )
