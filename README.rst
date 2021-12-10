@@ -1,10 +1,7 @@
 A lightweight wysiwyg editor for Django
 =======================================
 
-Screenshot
-----------
-
-.. image:: https://raw.githubusercontent.com/douglasmiranda/django-wysiwyg-redactor/master/screenshots/redactor.jpg
+This repo was forked from `https://github.com/douglasmiranda/django-wysiwyg-redactor <https://github.com/douglasmiranda/django-wysiwyg-redactor>`
 
 What's that
 -----------------
