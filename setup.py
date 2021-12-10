@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='streetvoice-django-wysiwyg-redactor',
-    version='0.6',
+    version='0.6.1',
     description='streetvoice-django-wysiwyg-redactor is a lightweight responsive wysiwyg editor for Django',
     long_description=readme,
     author="Robert Chiang",
